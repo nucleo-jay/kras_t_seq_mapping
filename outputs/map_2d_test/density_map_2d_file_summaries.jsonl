@@ -1,0 +1,1 @@
+{"file": "outputs/metrics_batches/metrics_cpg_040_042_seed42.npz", "n_sequences": 10000, "valid_sequences": 10000, "invalid_sequences": 0, "cpg_min": 35, "cpg_mean": 40.6009, "cpg_max": 45, "gc_min": 244, "gc_mean": 263.1983, "gc_max": 285}

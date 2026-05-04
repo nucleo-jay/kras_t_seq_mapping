@@ -1,0 +1,16 @@
+{
+  "n_files": 1,
+  "total_sequences_in_files": 10000,
+  "total_valid_sequences": 10000,
+  "total_invalid_sequences": 0,
+  "inferred_max_cpg": 45,
+  "inferred_max_gc": 285,
+  "used_max_cpg": 45,
+  "used_max_gc": 285,
+  "density_shape": [
+    46,
+    286
+  ],
+  "nonzero_bins": 251,
+  "max_bin_density": 235
+}

@@ -6,6 +6,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 from data.tables import codon_to_aa
+from pathlib import Path
 
 nuc_to_int = {"A":0,"C":1, "G":2, "T":3}
 
@@ -418,9 +419,11 @@ def main():
     parser.add_argument("--bin-high", type=int, required=True)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--target-metric", choices=["cpg","gc"], required=True, help="Metric to optmize across bins: CpG count or GC count")
+    parser.add_argument("--output-dir", type=str, default="outputs/metrics_batches", help="Directory to save per-run CpG/GC metric batches.")
     args = parser.parse_args()
     
-
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
     
 
     cds = read_sequence_cds(args.cds)
@@ -514,6 +517,26 @@ def main():
 
     final_cpg_counts.block_until_ready()
     final_gc_counts.block_until_ready()
+
+
+    metrics_path = output_dir / f"metrics_{args.target_metric}_{args.bin_low:03d}_{args.bin_high:03d}_seed{args.seed}.npz"
+    np.savez_compressed(
+        metrics_path,
+        cpg_counts=np.asarray(final_cpg_counts),
+        gc_counts=np.asarray(final_gc_counts),
+        target_metric=args.target_metric,
+        bin_low=args.bin_low,
+        bin_high=args.bin_high,
+        seed=args.seed,
+        population_size=args.population_size,
+        generations=args.generations,
+        mutation_rate=args.mutation_rate,
+        elite_fraction=args.elite_fraction,)
+
+    print(f"Saved metric batch: {metrics_path}")
+
+
+
 
     print(
         "Final CpG:",
