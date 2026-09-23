@@ -10,8 +10,9 @@ two-dimensional CpG-by-GC density map.
 > The current pipeline generates synonymous candidate sequences in memory but
 > saves only their final **CpG and GC counts**. It does not yet write the
 > nucleotide sequences themselves.
-> I chose to do this for simplicity and to avoid memory overhead experienced
-> when generating large numebers of sequences.
+> Later, after generating the desired features such as CpG, GC% etc, I will
+> remove the sequences from memory since I'm more interested in feature distribution
+> at this time.
 
 ## Workflow
 
