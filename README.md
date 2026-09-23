@@ -6,10 +6,12 @@ evolutionary algorithm to sample synonymous codon variants whose CpG or GC
 counts fall near a requested interval, then combines one or more runs into a
 two-dimensional CpG-by-GC density map.
 
-> [!IMPORTANT]
+
 > The current pipeline generates synonymous candidate sequences in memory but
 > saves only their final **CpG and GC counts**. It does not yet write the
 > nucleotide sequences themselves.
+> I chose to do this for simplicity and to avoid memory overhead experienced
+> when generating large numebers of sequences.
 
 ## Workflow
 
